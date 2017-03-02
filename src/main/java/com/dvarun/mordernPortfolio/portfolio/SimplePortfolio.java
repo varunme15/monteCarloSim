@@ -2,6 +2,9 @@ package com.dvarun.mordernPortfolio.portfolio;
 
 import java.math.BigDecimal;
 
+import com.dvarun.mordernPortfolio.simulator.MonteCarloSimulation;
+import com.dvarun.mordernPortfolio.simulator.Simulator;
+
 /**
  * Hello world!
  *
@@ -24,7 +27,21 @@ public class SimplePortfolio
 		this.name = name;
 		this.meanReturn = meanReturn;
 		this.riskSD = risk;
+		this.investment = initialInvestment;		
+	}
+    /**
+     * Constructor with simulation.
+     * @param name Name of Portfolio.
+     * @param meanReturn mean of returns. 
+     * @param risk Risk(Standard Deviation)
+     */
+    public SimplePortfolio(String name, BigDecimal initialInvestment, double meanReturn, double risk, SimulationParams simParams) {
+		this.name = name;
+		this.meanReturn = meanReturn;
+		this.riskSD = risk;
 		this.investment = initialInvestment;
+	    Simulator sim = new MonteCarloSimulation(simParams.getSimulations(), simParams.getYearsSimulated(), simParams.getInflation(), this);
+		sim.simulate();
 	}
     
 	/**

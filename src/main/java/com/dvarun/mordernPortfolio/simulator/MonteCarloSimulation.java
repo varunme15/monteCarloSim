@@ -1,6 +1,7 @@
 package com.dvarun.mordernPortfolio.simulator;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.math3.distribution.NormalDistribution;
@@ -8,6 +9,7 @@ import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
 
 import com.dvarun.mordernPortfolio.portfolio.PortfolioReturn;
 import com.dvarun.mordernPortfolio.portfolio.SimplePortfolio;
+import com.dvarun.mordernPortfolio.portfolio.SimulationParams;
 
 public class MonteCarloSimulation implements Simulator {
 	/**
@@ -25,6 +27,31 @@ public class MonteCarloSimulation implements Simulator {
 		this.inflation = inflation;
 	}
 
+	/**
+	 * @param simulations
+	 * @param yearsSimulated
+	 * @param inflation
+	 */
+	public MonteCarloSimulation(long simulations, int yearsSimulated,
+			double inflation, SimplePortfolio... portfolios) {
+		super();
+		this.simulations = simulations;
+		this.portfolios = Arrays.asList(portfolios);
+		this.yearsSimulated = yearsSimulated;
+		this.inflation = inflation;
+	}
+	
+	/**
+	 * @param simParams {@link SimulationParams}.
+	 * @param inflation
+	 */
+	public MonteCarloSimulation(SimulationParams simParams, SimplePortfolio... portfolios) {
+		super();
+		this.simulations = simParams.getSimulations();
+		this.portfolios = Arrays.asList(portfolios);
+		this.yearsSimulated = simParams.getYearsSimulated();
+		this.inflation = simParams.getInflation();
+	}
 	/**
 	 * No of simulations;
 	 */
