@@ -27,7 +27,7 @@ public class SimulatorTest {
 		Simulator sim = new MonteCarloSimulation(5000,portfolios,20,0.035);
 		sim.simulate();
 		for(SimplePortfolio sp:portfolios){
-			System.out.println(sp.toString());
+			System.out.println(String.format("PortfolioName:%s with initial investment $%d and mean return %f and risk SD %f returns %s ", sp.getName(), sp.getInvestment().longValue(), sp.getMeanReturn(), sp.getRiskSD(), sp.getSimulatedReturn().toString()));
 		}
 		
 	}
